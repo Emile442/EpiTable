@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/', [\App\Http\Controllers\HomeController::class, 'home'])->name('root');
 
-    Route::resource('tables', \App\Http\Controllers\TablesController::class);
+    Route::resource('tables', \App\Http\Controllers\TablesController::class, ['except' => ['create', 'show']]);
+    Route::resource('slots', \App\Http\Controllers\SlotsController::class, ['except' => ['create', 'show']]);
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

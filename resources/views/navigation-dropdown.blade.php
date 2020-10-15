@@ -19,6 +19,10 @@
                     <x-jet-nav-link href="{{ route('tables.index') }}" :active="request()->routeIs('tables.*')">
                         {{ __('Tables') }}
                     </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{ route('slots.index') }}" :active="request()->routeIs('slots.*')">
+                        {{ __('Slots') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 
@@ -123,6 +127,14 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-jet-responsive-nav-link>
+
+            <x-jet-responsive-nav-link href="{{ route('tables.index') }}" :active="request()->routeIs('tables.*')">
+                {{ __('Tables') }}
+            </x-jet-responsive-nav-link>
+
+            <x-jet-responsive-nav-link href="{{ route('slots.index') }}" :active="request()->routeIs('slots.*')">
+                {{ __('Slots') }}
             </x-jet-responsive-nav-link>
         </div>
 
