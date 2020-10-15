@@ -19343,6 +19343,8 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./delete */ "./resources/js/delete.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -19374,6 +19376,69 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/delete.js":
+/*!********************************!*\
+  !*** ./resources/js/delete.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var laravel = {
+  initialize: function initialize() {
+    this.methodLinks = $('a[data-method]');
+    this.registerEvents();
+  },
+  registerEvents: function registerEvents() {
+    this.methodLinks.on('click', this.handleMethod);
+  },
+  handleMethod: function handleMethod(e) {
+    var link = $(this);
+    var httpMethod = link.data('method').toUpperCase();
+    var form;
+
+    if ($.inArray(httpMethod, ['PUT', 'DELETE', 'POST']) === -1) {
+      return;
+    }
+
+    if (link.data('confirm')) {
+      if (!laravel.verifyConfirm(link)) {
+        return false;
+      }
+    }
+
+    form = laravel.createForm(link);
+    form.submit();
+    e.preventDefault();
+  },
+  verifyConfirm: function verifyConfirm(link) {
+    return confirm(link.data('confirm'));
+  },
+  createForm: function createForm(link) {
+    var form = $('<form>', {
+      'method': 'POST',
+      'action': link.attr('href')
+    });
+    var token = $('<input>', {
+      'type': 'hidden',
+      'name': '_token',
+      'value': $('meta[name=csrf-token]').attr('content')
+    });
+    var hiddenInput = $('<input>', {
+      'name': '_method',
+      'type': 'hidden',
+      'value': link.data('method')
+    });
+    if (link.data('method').toUpperCase() === 'POST') return form.append(token).appendTo('body');
+    return form.append(token, hiddenInput).appendTo('body');
+  }
+};
+laravel.initialize();
 
 /***/ }),
 
