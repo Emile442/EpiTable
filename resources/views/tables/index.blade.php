@@ -69,7 +69,7 @@
                         {{--                        </div>--}}
                     </div>
                 </div>
-                <div class="col-span-3 sm:col-span-3 md:col-span-3 xl:col-span-1">
+                    <div class="col-span-3 sm:col-span-3 md:col-span-3 xl:col-span-1">
                     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
                         @include('tables._form', ['table' => new \App\Models\Table()])
                     </div>

@@ -60,4 +60,21 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function getSchoolNameAttribute()
+    {
+        switch ($this->school) {
+            case '0':
+                return "Epitech IT";
+            case '1':
+                return "Epitech Digital";
+            case '2':
+                return "MSc";
+            case '3':
+                return "WAC";
+            case '4':
+                return "Autres";
+        }
+        return "Autres";
+    }
 }

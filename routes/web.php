@@ -19,7 +19,3 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('tables', \App\Http\Controllers\TablesController::class, ['except' => ['create', 'show']]);
     Route::resource('slots', \App\Http\Controllers\SlotsController::class, ['except' => ['create', 'show']]);
 });
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
