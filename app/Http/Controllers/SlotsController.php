@@ -30,4 +30,9 @@ class SlotsController extends Controller
         $slot->delete();
         return redirect()->route('slots.index')->with('success', 'The slot ' . $slot->start_at->format('H:i') . '-' .  $slot->end_at->format('H:i') . ' has been destroyed.');
     }
+
+    public function apiIndex() {
+        $slots = Slot::select('id', 'start_at', 'end_at')->get();
+        return response()->json($slots);
+    }
 }

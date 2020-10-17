@@ -25,6 +25,10 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "jquery": "^3.5.1"
+        "@grafikart/spinning-dots-element": "^1.1.0",
+        "alpinejs": "^2.7.0",
+        "jquery": "^3.5.1",
+        "moment": "^2.29.1",
+        "vue": "^2.6.12"
     }
 }

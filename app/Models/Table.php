@@ -10,4 +10,11 @@ class Table extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'maxPlaces'];
+
+    protected $hidden = ['bookings'];
+
+    public function bookings() {
+        return $this->hasMany(Booking::class);
+    }
+
 }

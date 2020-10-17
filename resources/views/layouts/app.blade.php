@@ -30,7 +30,7 @@
             </header>
 
             <!-- Page Content -->
-            <main>
+            <main id="app">
                 {{ $slot }}
             </main>
         </div>
@@ -39,5 +39,6 @@
 
         @livewireScripts
         <script src="{{ mix('js/app.js') }}"></script>
+        {{ isset($js) ? $js : '' }}
     </body>
 </html>

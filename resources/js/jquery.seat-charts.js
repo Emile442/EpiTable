@@ -38,7 +38,7 @@
                     node   : null,
                     items  : []
                 },
-                click   : function() {
+                click   : function(e) {
 
                     if (this.status() == 'available') {
                         return 'selected';

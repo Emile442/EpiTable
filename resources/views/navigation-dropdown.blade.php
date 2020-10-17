@@ -16,7 +16,11 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('root') }}" :active="request()->routeIs('root')">
-                        {{ __('Home') }}
+                        {{ __('Accueil') }}
+                    </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{ route('booking.my') }}" :active="request()->routeIs('booking.my')">
+                        {{ __('Mes réservations') }}
                     </x-jet-nav-link>
 
                     <x-jet-nav-link href="{{ route('tables.index') }}" :active="request()->routeIs('tables.*')">
@@ -129,7 +133,11 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('root') }}" :active="request()->routeIs('root')">
-                {{ __('Home') }}
+                {{ __('Accueil') }}
+            </x-jet-responsive-nav-link>
+
+            <x-jet-responsive-nav-link href="{{ route('booking.my') }}" :active="request()->routeIs('booking.my')">
+                {{ __('Mes réservations') }}
             </x-jet-responsive-nav-link>
 
             <x-jet-responsive-nav-link href="{{ route('tables.index') }}" :active="request()->routeIs('tables.*')">

@@ -20,7 +20,7 @@
                                     Name
                                 </th>
                                 <th class="px-5 py-3 border-b-2 border-gray-200 bg-white text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
-                                    maxPlaces
+                                    Max Places
                                 </th>
                                 <th class="px-5 py-3 border-b-2 border-gray-200 bg-white text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
                                     Actions

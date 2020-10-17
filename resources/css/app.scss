@@ -6,6 +6,10 @@
 
 @import "seatCharts";
 
+[x-cloak] {
+    display: none;
+}
+
 .navbar-logo {
     width: 32px;
 }
