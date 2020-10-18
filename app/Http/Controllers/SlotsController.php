@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class SlotsController extends Controller
 {
+    public function __construct() {
+        $this->authorizeResource(Slot::class, 'slot');
+    }
+
     public function index() {
         $slots = Slot::orderBy('start_at', 'ASC')->get();
         return view('slots.index', compact('slots'));
@@ -29,10 +33,5 @@ class SlotsController extends Controller
     public function destroy(Slot $slot) {
         $slot->delete();
         return redirect()->route('slots.index')->with('success', 'The slot ' . $slot->start_at->format('H:i') . '-' .  $slot->end_at->format('H:i') . ' has been destroyed.');
-    }
-
-    public function apiIndex() {
-        $slots = Slot::select('id', 'start_at', 'end_at')->get();
-        return response()->json($slots);
     }
 }

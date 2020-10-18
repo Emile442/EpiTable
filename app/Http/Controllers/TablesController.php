@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class TablesController extends Controller
 {
+    public function __construct() {
+        $this->authorizeResource(Table::class, 'table');
+    }
+
     public function index() {
         $tables = Table::all();
         return view('tables.index', compact('tables'));

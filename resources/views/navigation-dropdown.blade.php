@@ -23,13 +23,23 @@
                         {{ __('Mes réservations') }}
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ route('tables.index') }}" :active="request()->routeIs('tables.*')">
-                        {{ __('Tables') }}
-                    </x-jet-nav-link>
+                    @can('viewAny', App\Models\Table::class)
+                        <x-jet-nav-link href="{{ route('tables.index') }}" :active="request()->routeIs('tables.*')">
+                            {{ __('Tables') }}
+                        </x-jet-nav-link>
+                    @endcan
 
-                    <x-jet-nav-link href="{{ route('slots.index') }}" :active="request()->routeIs('slots.*')">
-                        {{ __('Slots') }}
-                    </x-jet-nav-link>
+                    @can('viewAny', App\Models\Slot::class)
+                        <x-jet-nav-link href="{{ route('slots.index') }}" :active="request()->routeIs('slots.*')">
+                            {{ __('Slots') }}
+                        </x-jet-nav-link>
+                    @endcan
+
+                    @can('viewAny', App\Models\User::class)
+                        <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
+                            {{ __('Users') }}
+                        </x-jet-nav-link>
+                    @endcan
                 </div>
             </div>
 
@@ -107,9 +117,7 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
-                            <x-jet-dropdown-link href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                                            this.closest('form').submit();">
+                            <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
                                 {{ __('Logout') }}
                             </x-jet-dropdown-link>
                         </form>
@@ -140,13 +148,23 @@
                 {{ __('Mes réservations') }}
             </x-jet-responsive-nav-link>
 
-            <x-jet-responsive-nav-link href="{{ route('tables.index') }}" :active="request()->routeIs('tables.*')">
-                {{ __('Tables') }}
-            </x-jet-responsive-nav-link>
+            @can('viewAny', App\Models\Table::class)
+                <x-jet-responsive-nav-link href="{{ route('tables.index') }}" :active="request()->routeIs('tables.*')">
+                    {{ __('Tables') }}
+                </x-jet-responsive-nav-link>
+            @endcan
 
-            <x-jet-responsive-nav-link href="{{ route('slots.index') }}" :active="request()->routeIs('slots.*')">
-                {{ __('Slots') }}
-            </x-jet-responsive-nav-link>
+            @can('viewAny', App\Models\Slot::class)
+                <x-jet-responsive-nav-link href="{{ route('slots.index') }}" :active="request()->routeIs('slots.*')">
+                    {{ __('Slots') }}
+                </x-jet-responsive-nav-link>
+            @endcan
+
+            @can('viewAny', App\Models\User::class)
+                <x-jet-responsive-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
+                    {{ __('Users') }}
+                </x-jet-responsive-nav-link>
+            @endcan
         </div>
 
         <!-- Responsive Settings Options -->

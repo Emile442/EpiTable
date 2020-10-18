@@ -29,6 +29,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'school',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -60,6 +61,10 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function getIsAdminAttribute() {
+        return $this->role == 'ADMIN';
+    }
 
     public function getSchoolNameAttribute()
     {

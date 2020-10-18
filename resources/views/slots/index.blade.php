@@ -10,6 +10,7 @@
             <div class="grid grid-cols-3 gap-4">
                 <div class="col-span-3 xl:col-span-2 md:col-span-3 sm:col-span-3 overflow-x-auto">
                     <div class="inline-block min-w-full bg-white shadow-md rounded rounded-lg pt-2 my-2 overflow-hidden">
+                        @include('layouts._flash')
                         <table class="min-w-full leading-normal">
                             <thead>
                             <tr>
@@ -37,7 +38,7 @@
                                         <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" href="{{ route('slots.edit', $slot) }}">
                                             Edit
                                         </a>
-                                        <a class="ml-1 bg-red-300 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" href="{{ route('slots.destroy', $slot) }}" data-method="delete" data-confirm="Are you sure you want to delete this table  ?">
+                                        <a class="ml-1 bg-red-300 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" href="{{ route('slots.destroy', $slot) }}" data-method="delete" data-confirm="Are you sure you want to delete this slot  ?">
                                             Delete
                                         </a>
                                     </td>
@@ -45,22 +46,6 @@
                             @endforeach
                             </tbody>
                         </table>
-                        {{--                        <div--}}
-                        {{--                            class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">--}}
-                        {{--                                <span class="text-xs xs:text-sm text-gray-900">--}}
-                        {{--                                    Showing 1 to 4 of 50 Entries--}}
-                        {{--                                </span>--}}
-                        {{--                            <div class="inline-flex mt-2 xs:mt-0">--}}
-                        {{--                                <button--}}
-                        {{--                                    class="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-l">--}}
-                        {{--                                    Prev--}}
-                        {{--                                </button>--}}
-                        {{--                                <button--}}
-                        {{--                                    class="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-r">--}}
-                        {{--                                    Next--}}
-                        {{--                                </button>--}}
-                        {{--                            </div>--}}
-                        {{--                        </div>--}}
                     </div>
                 </div>
                 <div class="col-span-3 sm:col-span-3 md:col-span-3 xl:col-span-1">

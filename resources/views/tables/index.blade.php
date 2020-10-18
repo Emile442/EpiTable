@@ -10,6 +10,7 @@
             <div class="grid grid-cols-3 gap-4">
                 <div class="col-span-3 xl:col-span-2 md:col-span-3 sm:col-span-3 overflow-x-auto">
                     <div class="inline-block min-w-full bg-white shadow-md rounded rounded-lg pt-2 my-2 overflow-hidden">
+                        @include('layouts._flash')
                         <table class="min-w-full leading-normal">
                             <thead>
                             <tr>
