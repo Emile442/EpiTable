@@ -43,7 +43,7 @@
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 @if($booking->canBeDelete)
-                                    <a class="ml-1 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full" href="{{ route('booking.my.delete', $booking) }}" data-method="delete" data-confirm="Etes-vous sur de vouloir annuler cette réservation ?">
+                                    <a class="ml-1 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full" href="{{ route('bookings.destroy', $booking) }}" data-method="delete" data-confirm="Etes-vous sur de vouloir annuler cette réservation ?">
                                         Annuler
                                     </a>
                                 @endif

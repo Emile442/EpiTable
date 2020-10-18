@@ -16,10 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/', [\App\Http\Controllers\HomeController::class, 'home'])->name('root');
 
-    Route::post('bookings', [\App\Http\Controllers\BookingsController::class, 'store']);
-    Route::get('bookings', [\App\Http\Controllers\BookingsController::class, 'index']);
+    Route::resource('bookings', \App\Http\Controllers\BookingsController::class, ['except' => ['create', 'show']]);
     Route::get('bookings/my', [\App\Http\Controllers\BookingsController::class, 'my'])->name('booking.my');
-    Route::delete('bookings/my/{booking}', [\App\Http\Controllers\BookingsController::class, 'deleteMy'])->name('booking.my.delete');
+    Route::get('bookings/random', [\App\Http\Controllers\BookingsController::class, 'randomPlace']);
 
     Route::resource('users', \App\Http\Controllers\UsersController::class, ['except' => ['create', 'show']]);
 

@@ -6,11 +6,20 @@ namespace App\Http\Controllers;
 use App\Http\Requests\BookingRequest;
 use App\Models\Booking;
 use App\Models\Table;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class BookingsController extends Controller
 {
+    const RANDOM = 'random';
+    const SIDE_TO = 'side_to';
+    const NOT_SIDE_TO = 'not_side_to';
+
+    public function __construct() {
+        $this->authorizeResource(Booking::class, 'booking');
+    }
+
     public function index() {
         $bookings = Booking::with('table')->with('slot')->get();
 
@@ -25,15 +34,107 @@ class BookingsController extends Controller
         return view('bookings.my', compact('bookings'));
     }
 
-    public function deleteMy(Booking  $booking) {
-        if ($booking->user_id != \Auth::user()->id) {
-            abort(403);
-        }
+    public function destroy(Booking  $booking) {
         if (!$booking->canBeDelete) {
             return redirect()->route('booking.my')->with('error', "Impossible d'annuler cette réservation");
         }
         $booking->delete();
         return redirect()->route('booking.my')->with('success', 'Réservation annulée !');
+    }
+
+    public function randomPlace(Request  $request) {
+        $date = $request->get('day') == 'today' ? Carbon::now() : Carbon::now()->addDay();
+        $bookings = Booking::with('table')->with('slot')->where('slot_id', $request->get('slot'))->whereDate('booked_for', $date)->get();
+
+        $mode = $request->get('mode');
+        $room = [];
+
+        foreach (Table::all() as $table) {
+            $room[$table->id] = [];
+            for ($i = 0; $i != $table->maxPlaces; $i++) {
+                $room[$table->id][$i + 1] = $bookings->where('table_id', $table->id)->where('table_place', $i +1 )->first() ? true : false;
+            }
+        }
+
+        $br = false;
+        foreach ($room as $table) {
+            foreach ($table as $seat) {
+                if ($seat == false) {
+                    $br = true;
+                    break;
+                }
+            }
+            if ($br == true) {
+                break;
+            }
+        }
+        if ($br == false) {
+            return response()->json(['message' => 'Aucune places disponibles'], 422);
+        }
+
+        $place = null;
+        if ($mode == self::RANDOM) {
+            for ($nbr = array_rand($room, 1); $place == null; $nbr = array_rand($room, 1)) {
+                $table = $room[$nbr];
+                foreach ($table as $k => $seat) {
+                    if ($seat == false) {
+                        $place = $nbr . '_' . $k;
+                        break;
+                    }
+                }
+                if ($place) {
+                    break;
+                }
+            }
+        }
+        if ($mode == self::SIDE_TO) {
+            $tmp = [];
+            $users = User::select('id')->where('school', \Auth::user()->school)->get();
+            foreach ($users as $user) {
+                $tmp[] = $user->id;
+            }
+            $onlyMySchool = $bookings->whereIn('user_id', $tmp);
+            foreach ($onlyMySchool as $booking) {
+                if (isset($room[$booking->table->id][$booking->table_place + 1])) {
+                    if ($room[$booking->table->id][$booking->table_place + 1] == false) {
+                        $place = $booking->table->id . '_' . ($booking->table_place + 1);
+                        break;
+                    }
+                }
+                if (isset($room[$booking->table->id][$booking->table_place - 1])) {
+                    if ($room[$booking->table->id][$booking->table_place - 1] == false) {
+                        $place = $booking->table->id . '_' . ($booking->table_place - 1);
+                        break;
+                    }
+                }
+            }
+        }
+        if ($mode == self::NOT_SIDE_TO) {
+            $tmp = [];
+            $users = User::select('id')->where('school', \Auth::user()->school)->get();
+            foreach ($users as $user) {
+                $tmp[] = $user->id;
+            }
+            $onlyMySchool = $bookings->whereNotIn('user_id', $tmp);
+            foreach ($onlyMySchool as $booking) {
+                if (isset($room[$booking->table->id][$booking->table_place + 1])) {
+                    if ($room[$booking->table->id][$booking->table_place + 1] == false) {
+                        $place = $booking->table->id . '_' . ($booking->table_place + 1);
+                        break;
+                    }
+                }
+                if (isset($room[$booking->table->id][$booking->table_place - 1])) {
+                    if ($room[$booking->table->id][$booking->table_place - 1] == false) {
+                        $place = $booking->table->id . '_' . ($booking->table_place - 1);
+                        break;
+                    }
+                }
+            }
+        }
+        if ($place == null) {
+            return response()->json(['message' => "Place introuvable merci  d'en choisir une manuellement"], 422);
+        }
+        return response()->json(['seat' => $place]);
     }
 
     public function store(BookingRequest $request) {

@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Booking;
 use App\Models\Slot;
 use App\Models\Table;
 use App\Models\User;
+use App\Policies\BookingPolicy;
 use App\Policies\SlotPolicy;
 use App\Policies\TablePolicy;
 use App\Policies\UserPolicy;
@@ -22,6 +24,7 @@ class AuthServiceProvider extends ServiceProvider
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
         Table::class    => TablePolicy::class,
         Slot::class     => SlotPolicy::class,
+        Booking::class  => BookingPolicy::class,
         User::class     => UserPolicy::class
     ];
 

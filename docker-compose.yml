@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+    web:
+      image: nginx
+      volumes:
+        - './docker/site.conf:/etc/nginx/conf.d/default.conf'
+        - '.:/application'
+      depends_on:
+        - php-fpm
+      ports:
+        - "801:80"
+      networks:
+        - "my-network"
+
+    php-fpm:
+      build:
+        context: docker
+        dockerfile: php.dockerfile
+      depends_on:
+        - database
+      volumes:
+        - '.:/application'
+      networks:
+        - "my-network"
+
+    assets:
+      build:
+        context: docker
+        dockerfile: node.dockerfile
+      volumes:
+        - '.:/application'
+
+    database:
+      image: mariadb
+      ports:
+        - "3306"
+      environment:
+        MYSQL_DATABASE: epi_table
+        MYSQL_USER: epi_table
+        MYSQL_PASSWORD: EW46zeRp6
+        MYSQL_ROOT_PASSWORD: root
+      volumes:
+        - "./docker/mariadb:/var/lib/mysql"
+      networks:
+        - "my-network"
+
+networks:
+  my-network:
+
+
