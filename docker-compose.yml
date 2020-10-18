@@ -9,7 +9,7 @@ services:
       depends_on:
         - php-fpm
       ports:
-        - "801:80"
+        - "80:80"
       networks:
         - "my-network"
 
@@ -39,7 +39,7 @@ services:
         MYSQL_DATABASE: epi_table
         MYSQL_USER: epi_table
         MYSQL_PASSWORD: EW46zeRp6
-        MYSQL_ROOT_PASSWORD: root
+        MYSQL_ROOT_PASSWORD: 7b2BY5Ryd
       volumes:
         - "./docker/mariadb:/var/lib/mysql"
       networks:
