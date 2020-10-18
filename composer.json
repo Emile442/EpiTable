@@ -17,7 +17,8 @@
         "laravel/jetstream": "^1.4",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.0",
-        "livewire/livewire": "^2.0"
+        "livewire/livewire": "^2.0",
+        "thenetworg/oauth2-azure": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",

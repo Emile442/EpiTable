@@ -1,7 +1,9 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <a href="{{ route('root') }}">
+                <img src="{{ asset('img/epitech-logo.png') }}" alt="Logo" class="w-16 h-16">
+            </a>
         </x-slot>
 
         <div x-data="{ recovery: false }">

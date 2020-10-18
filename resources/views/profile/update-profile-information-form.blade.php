@@ -55,20 +55,20 @@
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="name" value="{{ __('Firstname') }}" />
-            <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" />
+            <x-jet-input id="name" type="text" class="mt-1 block w-full opacity-50" wire:model.defer="state.name" autocomplete="name" readonly />
             <x-jet-input-error for="name" class="mt-2" />
         </div>
 
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="lastname" value="{{ __('Lastname') }}" />
-            <x-jet-input id="lastname" type="text" class="mt-1 block w-full" wire:model.defer="state.lastname" autocomplete="lastname" />
+            <x-jet-input id="lastname" type="text" class="mt-1 block w-full opacity-50" readonly wire:model.defer="state.lastname" autocomplete="lastname" />
             <x-jet-input-error for="lastname" class="mt-2" />
         </div>
 
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="email" value="{{ __('Email') }}" />
-            <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
+            <x-jet-input id="email" type="email" class="mt-1 block w-full opacity-50" readonly wire:model.defer="state.email" />
             <x-jet-input-error for="email" class="mt-2" />
         </div>
 
@@ -82,7 +82,6 @@
                     <option value="1" {{ old('school', $this->user->school) == '1' ? 'selected': '' }}>Epitech Digital</option>
                     <option value="2" {{ old('school', $this->user->school) == '2' ? 'selected': '' }}>MSc</option>
                     <option value="3" {{ old('school', $this->user->school) == '3' ? 'selected': '' }}>WAC</option>
-                    <option value="4" {{ old('school', $this->user->school) == '4' ? 'selected': '' }}>Autres</option>
                 </select>
                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
