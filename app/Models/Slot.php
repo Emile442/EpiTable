@@ -14,9 +14,4 @@ class Slot extends Model
 
     protected $dates = ['start_at', 'end_at'];
 
-    public function getCanBeBookAttribute()
-    {
-        $limitTime = Carbon::createFromFormat('H:i', $this->start_at->format('H:i'))->subMinutes(10);
-        return !(Carbon::now()->greaterThan($limitTime));
-    }
 }

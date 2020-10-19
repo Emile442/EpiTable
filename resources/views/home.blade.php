@@ -83,7 +83,7 @@
                                     <div class="relative">
                                         <select name="slots" class="block appearance-none w-full border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="slots">
                                             @foreach(\App\Models\Slot::orderBy('start_at', 'ASC')->get() as $slot)
-                                                <option value="{{ $slot->id }}" {{ $slot->canBeBook ? '' : 'disabled' }}>De {{ $slot->start_at->format('H:i') }} à {{ $slot->end_at->format('H:i') }}</option>
+                                                <option value="{{ $slot->id }}">De {{ $slot->start_at->format('H:i') }} à {{ $slot->end_at->format('H:i') }}</option>
                                             @endforeach
                                         </select>
                                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">

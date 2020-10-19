@@ -7,10 +7,6 @@
     <div>
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
-                <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-600 p-4 mt-4 my-5 ml-5 mr-5" role="alert">
-                    <p>If you edit the field <strong>email</strong> a confirmation will be send</p>
-                </div>
-
                 <form method="POST" action="{{ route('users.update', $user) }}">
                     @csrf
                     <input type="hidden" name="_method" value="put"/>
