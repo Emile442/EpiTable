@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BookingRequest;
 use App\Models\Booking;
+use App\Models\Slot;
 use App\Models\Table;
 use App\Models\User;
 use Carbon\Carbon;
@@ -140,6 +141,11 @@ class BookingsController extends Controller
     public function store(BookingRequest $request) {
         $seatData = explode('_', $request->get('place'));
         $date = $request->get('day') == 'today' ? Carbon::now() : Carbon::now()->addDay();
+        $slot = Slot::find($request->get('slots'));
+
+        if (!$slot->canBeBook) {
+            return response()->json(['message' => "Réservation impossible;, vous pouvez reserver jusqu'à 10min avant."], 422);
+        }
 
         if (Booking::where('user_id', \Auth::user()->id)->whereDate('booked_for', $date)->first()) {
             return response()->json(['message' => "Vous avez déjà une réservation pour ce jour là ! Merci de l'annuler avant dans réserver une autre !"], 422);

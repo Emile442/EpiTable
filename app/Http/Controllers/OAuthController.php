@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use TheNetworg\OAuth2\Client\Provider\Azure;
 
 class OAuthController extends Controller
@@ -53,12 +56,12 @@ class OAuthController extends Controller
                     'lastname' => $me['surname'] ? strtoupper($me['surname']) : '',
                     'email' => $me['mail'],
                     'school' => 0,
-                    'password' => Hash::make(Str::random(16)),
-                    'api_token' => Str::random(80)
+                    'email_verified_at' => Carbon::now(),
+                    'password' => Hash::make(Str::random(16))
                 ]);
                 Auth::login($user);
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             abort(403, $e->getMessage());
         }
         return redirect()->route('root');
