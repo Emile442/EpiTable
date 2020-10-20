@@ -25,7 +25,7 @@
 
             <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <x-jet-input id="email" class="block mt-1 w-full" placeholder="...@epitech.eu, ...@epitech.digital" type="email" name="email" :value="old('email')" required />
             </div>
 
             <div class="mt-4">
