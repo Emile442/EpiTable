@@ -52,6 +52,9 @@
                     @endforeach
                     </tbody>
                 </table>
+                <div class="m-4 ">
+                    {!! $bookings->links() !!}
+                </div>
             </div>
         </div>
     </div>

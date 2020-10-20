@@ -31,7 +31,7 @@ class BookingsController extends Controller
         $bookings = Booking::with('table')->with('slot')
             ->where('user_id', \Auth::user()->id)
             ->orderBy('booked_for', 'DESC')
-            ->get();
+            ->paginate(20);
         return view('bookings.my', compact('bookings'));
     }
 

@@ -5,7 +5,6 @@
         </h2>
     </x-slot>
 
-
     <div class="container mx-auto py-6">
         <div class="sm:ml-10 sm:mr-10">
             <div x-data="bookingForm()" x-cloak>
@@ -120,6 +119,8 @@
                         </div>
 
                     </div>
+
+                    <p class="text-gray-300">Fait par Emile LEPETIT, Anaëlle RAVON, Alexandre POIGNAND</p>
                 </div>
 
                 <div class="fixed bottom-0 left-0 right-0 py-5 bg-white shadow-md" x-show="step != 'complete'">

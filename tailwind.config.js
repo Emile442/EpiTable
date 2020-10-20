@@ -13,11 +13,27 @@ module.exports = {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
         },
+        /*pagination: theme => ({
+            // Customize the color only. (optional)
+            color: theme('colors.teal.600'),
+
+            // Customize styling using @apply. (optional)
+            wrapper: 'flex justify-center',
+
+            // Customize styling using CSS-in-JS. (optional)
+            wrapper: {
+                'display': 'flex',
+                'justify-items': 'center',
+            },
+        })*/
     },
 
     variants: {
         opacity: ['responsive', 'hover', 'focus', 'disabled'],
     },
 
-    plugins: [require('@tailwindcss/ui')],
+    plugins: [
+        require('@tailwindcss/ui'),
+        require('tailwindcss-plugins/pagination')
+    ],
 };
