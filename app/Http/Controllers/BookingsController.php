@@ -145,7 +145,7 @@ class BookingsController extends Controller
 
         $limitTime = Carbon::createFromFormat('H:i', $slot->start_at->format('H:i'))->subMinutes(10);
         if ($date->greaterThan($limitTime)) {
-            return response()->json(['message' => "Réservation impossible;, vous pouvez reserver jusqu'à 10min avant."], 422);
+            return response()->json(['message' => "Réservation impossible, vous pouvez reserver jusqu'à 10min avant."], 422);
         }
 
         if (Booking::where('user_id', \Auth::user()->id)->whereDate('booked_for', $date)->first()) {
