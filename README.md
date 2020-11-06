@@ -7,6 +7,7 @@
 $ make start
 $ make init (just for first launch)
 ```
+visit http://localhost:7516
 
 ---
 
@@ -16,7 +17,7 @@ $ make init (just for first launch)
 $ make dev
 $ make init (just for first launch)
 ```
-
+visit http://localhost:7516
 
 ---
 
