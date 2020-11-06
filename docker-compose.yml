@@ -9,7 +9,7 @@ services:
       depends_on:
         - php-fpm
       ports:
-        - "80:80"
+        - "7516:80"
       networks:
         - "my-network"
 

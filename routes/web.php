@@ -28,6 +28,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('slots', \App\Http\Controllers\SlotsController::class, ['except' => ['create', 'show']]);
 });
 
+Route::resource('articles', \App\Http\Controllers\admin\ArticlesController::class);
+
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/oauth2/azure/redirect', [\App\Http\Controllers\OAuthController::class, 'azureRedirect'])->name('auth.azure.redirect');
     Route::get('/oauth2/azure/callback', [\App\Http\Controllers\OAuthController::class, 'azureCallback'])->name('auth.azure.callback');
