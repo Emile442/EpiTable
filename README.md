@@ -1,9 +1,12 @@
 # EpiTable
+Rajout d’un service de restauration avec plusieurs créneaux à Epitech Nantes. Le projet sera un système de réservation de créneaux pour déjeuner.
+
 
 ## How to start ?
 
 > Assets generation ~1min 
 ```bash
+$ cp .env.example .env
 $ make start
 $ make init (just for first launch)
 ```
@@ -14,6 +17,7 @@ visit http://localhost:7516
 ## Start dev
 > Assets generation ~1min 
 ```bash
+$ cp .env.example .env
 $ make dev
 $ make init (just for first launch)
 ```
