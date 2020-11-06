@@ -10,8 +10,13 @@ $ cp .env.example .env
 $ make start
 $ make init (just for first launch)
 ```
-visit http://localhost:7516
+visit http://localhost:7516 <br />
 
+Init method create 2 users
+```text
+admin@epitech.eu    password
+student@epitech.eu  password
+``` 
 ---
 
 ## Start dev
@@ -21,8 +26,13 @@ $ cp .env.example .env
 $ make dev
 $ make init (just for first launch)
 ```
-visit http://localhost:7516
+visit http://localhost:7516 <br />
 
+Init method create 2 users
+```text
+admin@epitech.eu    password
+student@epitech.eu  password
+``` 
 ---
 
 ## Makefile
