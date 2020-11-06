@@ -143,9 +143,11 @@ class BookingsController extends Controller
         $date = $request->get('day') == 'today' ? Carbon::now() : Carbon::now()->addDay();
         $slot = Slot::find($request->get('slots'));
 
-        $limitTime = Carbon::createFromFormat('H:i', $slot->start_at->format('H:i'))->subMinutes(10);
-        if ($date->greaterThan($limitTime)) {
-            return response()->json(['message' => "Réservation impossible, vous pouvez reserver jusqu'à 10min avant."], 422);
+        if ($request->get('day') == 'today'){
+            $limitTime = Carbon::createFromFormat('H:i', $slot->start_at->format('H:i'))->subMinutes(10);
+            if ($date->greaterThan($limitTime)) {
+                return response()->json(['message' => "Réservation impossible, vous pouvez reserver jusqu'à 10min avant."], 422);
+            }
         }
 
         if (Booking::where('user_id', \Auth::user()->id)->whereDate('booked_for', $date)->first()) {
